@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
-set -e
+source ./funcs.zsh
 
 # Colors
 red='\e[0;31m'
@@ -12,11 +11,9 @@ USERNAME=`logname`
 
 # apt-get -y install silversearch-ag
 
-# scirpts to install
-# git-forest - https://raw.githubusercontent.com/jwiegley/git-scripts/master/git-forest
-# git-wtf - https://raw.githubusercontent.com/michaelklishin/git-wtf/master/git-wtf
-
 # Apps to install
+# fortunes fortunes-ru
+# ngrok
 # - aptitude
 # - composer
 # - curl/wget
@@ -30,21 +27,6 @@ USERNAME=`logname`
 # - cmake
 # - python-dev
 # - uuid-dev - for taskwarrior
-
-function __symlink {
-  if [ ! -f "$HOME/$1" -a ! -d "$HOME/$1" ]; then
-    echo "symlinking $BASEDIR/$1 => $HOME/$1"
-    ln -s "$BASEDIR/$1" "$HOME/$1"
-  fi
-}
-
-function __clone {
-  if [ ! -d "$BASEDIR/$2" ]; then
-    echo "clone from $1 to $BASEDIR/$2"
-    git clone --recursive "$1" "$BASEDIR/$2"
-  fi
-  __symlink $2
-}
 
 # Install git
 hash git >/dev/null 2>&1 || {
